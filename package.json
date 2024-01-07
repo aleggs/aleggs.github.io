@@ -1,0 +1,22 @@
+{
+  "name": "lucid",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/lit": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "@webcomponents/template-shadowroot": "^0.2.1",
+    "astro": "^3.1.2",
+    "lit": "^2.8.0",
+    "prettier-plugin-html-template-literals": "^1.0.5",
+    "rss-parser": "^3.13.0",
+    "tailwindcss": "^3.3.3"
+  }
+}
