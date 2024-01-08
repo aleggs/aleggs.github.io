@@ -5,5 +5,6 @@ import lit from "@astrojs/lit";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), lit()]
+  integrations: [tailwind(), lit()],
+  site: 'https://aleggs.github.io',
 });
