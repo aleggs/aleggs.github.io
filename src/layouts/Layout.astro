@@ -18,13 +18,16 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<slot />
+
 	</body>
 </html>
 <style is:global>
 	:root {
-		--accent: 243, 203, 92;
+		/* --accent: 251, 211, 136; */
+		--accent: 255, 231, 122; /* Pantone 924 U #FFE77A */
 		--accent-light: 255,240,160;
-		--accent-dark: 59, 0,0;
+		--accent-slightly-darker: 255,230,113;
+		--accent-dark: 255,211,14;
 		--accent-gradient: linear-gradient(
 			45deg,
 			rgb(var(--accent)),
@@ -48,4 +51,20 @@ const { title } = Astro.props;
 			Courier New,
 			monospace;
 	}
+	svg.trail {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1000;
+		pointer-events: none;
+	}
+	svg.trail path {
+		fill: none;
+		stroke: rgb(var(--accent));
+		stroke-width: 2px;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		pointer-events: none;
+	}
+
 </style>

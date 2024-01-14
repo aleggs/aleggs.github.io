@@ -11,13 +11,15 @@ import AboutMe from '../components/AboutMe.astro';
 			<span class="blinking-cursor"></span>
 		</span>
 		<span>
-			<a href="https://threejackdaws.substack.com">substack</a>
+			<div class="right-header-bar">
+				<a href="https://threejackdaws.substack.com">substack</a>
+			</div>
 		</span>
 	</div>
-
+	
 	<main>
 		<div class="flexrow background-gray">
-			<img class="pfp" src="yuqi.jpeg">
+			<img class="pfp" src="IMG_5463.png">
 			<div class="flexcolumn">
 				<div class="text-large">alex xu</div>
 				<div class="emphasis-low text-small">masquerading as a sentient being since 2001&trade;</div>
@@ -27,11 +29,15 @@ import AboutMe from '../components/AboutMe.astro';
 			<AboutMe></AboutMe>
 			<SubstackFeed></SubstackFeed>
 		</div>
+		<svg class="trail" viewBox="0 0 1 1">
+			<path d="" />
+		</svg>
 	</main>
 </Layout>
 
 <script src="/src/scripts/resize.ts"></script>
-  
+<script src="/src/scripts/mouse_trail.js"></script>
+
 <style>
 	main {
 		margin: auto;
@@ -43,21 +49,36 @@ import AboutMe from '../components/AboutMe.astro';
 		flex-direction: column;
 		justify-content: center;
 		visibility: hidden;
+		position: relative;
 		/* align-items: center; */
 	}
 	.header-bar {
 		display: absolute;
 		padding: 1.2rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 		background-color: gainsboro;
 		height: 3rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
+	.header-bar a:hover {
+		text-decoration: underline;
+		text-decoration-color: rgb(var(--accent));
+	}
 	.header-bar span {
 		display: inline-block;
 		vertical-align: middle;
 		line-height: normal;
+	}
+	.right-header-bar {
+		display: flex;
+		flex-direction: row;
+		align-items: left;
+		/* align-items: center; */
+		justify-content: space-between;
+		gap: 1.5rem;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -86,7 +107,7 @@ import AboutMe from '../components/AboutMe.astro';
 		}
 		50% {
 			opacity: 1;
-			background-color: gold;
+			background-color: rgb(var(--accent-slightly-darker));
 		}
 	}
 	.blinking-cursor::after {
@@ -99,6 +120,13 @@ import AboutMe from '../components/AboutMe.astro';
 		height: 4rem;
 		border-radius: 50%;
 		object-fit: cover;
+	}
+	.small-circle {
+		width: 1rem;
+		height: 1rem;
+		border-radius: 50%;
+		object-fit: cover;
+		display: inline;
 	}
 	.flexrow {
 		display: flex;
