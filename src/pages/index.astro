@@ -1,161 +1,206 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SubstackFeed from '../components/SubstackFeed.astro';
-import AboutMe from '../components/AboutMe.astro';
+import Layout from "../layouts/Layout.astro";
+import SubstackFeed from "../components/SubstackFeed.astro";
+import AboutMe from "../components/AboutMe.astro";
 ---
 
 <Layout title="hello there">
-	<div class="header-bar">
-		<span>
-			<span><a href="/">&#62;	&#36; hello world!&nbsp;</a></span>
-			<span class="blinking-cursor"></span>
-		</span>
-		<span>
-			<div class="right-header-bar">
-				<a href="https://threejackdaws.substack.com">substack</a>
-			</div>
-		</span>
-	</div>
-	
-	<main>
-		<div class="flexrow background-gray">
-			<img class="pfp" src="IMG_5463.png">
-			<div class="flexcolumn">
-				<div class="text-large">alex xu</div>
-				<div class="emphasis-low text-small">masquerading as a sentient being since 2001&trade;</div>
-			</div>
-		</div>
-		<div class="main-content">
-			<AboutMe></AboutMe>
-			<SubstackFeed></SubstackFeed>
-		</div>
-		<svg class="trail" viewBox="0 0 1 1">
-			<path d="" />
-		</svg>
-	</main>
+  <div class="header-bar">
+    <span>
+      <span><a href="/">&#62; &#36; hello world!&nbsp;</a></span>
+      <span class="blinking-cursor"></span>
+    </span>
+    <span>
+      <div class="right-header-bar">
+        <a href="https://threejackdaws.substack.com">substack</a>
+      </div>
+    </span>
+  </div>
+
+  <main>
+    <div class="flexrow">
+      <img class="pfp" src="IMG_5463.png" />
+      <div class="flexcolumn">
+        <div class="text-large">alex xu</div>
+        <div class="emphasis-low text-small">sentient being since 2001</div>
+      </div>
+    </div>
+    <div class="main-content">
+      <AboutMe />
+      <SubstackFeed />
+    </div>
+    <svg class="trail" viewBox="0 0 1 1">
+      <path d=""></path>
+    </svg>
+  </main>
 </Layout>
 
-<script src="/src/scripts/resize.ts"></script>
+<!-- <script src="/src/scripts/resize.ts"></script> -->
 <script src="/src/scripts/mouse_trail.js"></script>
 
 <style>
-	main {
-		margin: auto;
-		max-width: calc(90% - 0rem);
-		min-width: 70%;
-		color: black;
-		font-size: 1.25rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		visibility: hidden;
-		position: relative;
-		/* align-items: center; */
-	}
-	.header-bar {
-		display: absolute;
-		padding: 1.2rem;
-		padding-left: 1.5rem;
-		padding-right: 1.5rem;
-		background-color: gainsboro;
-		height: 3rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	.header-bar a:hover {
-		text-decoration: underline;
-		text-decoration-color: rgb(var(--accent));
-	}
-	.header-bar span {
-		display: inline-block;
-		vertical-align: middle;
-		line-height: normal;
-	}
-	.right-header-bar {
-		display: flex;
-		flex-direction: row;
-		align-items: left;
-		/* align-items: center; */
-		justify-content: space-between;
-		gap: 1.5rem;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.main-content {
-		/* visibility: hidden; */
-		/* max-width: calc(80% - 12rem); */
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		/* align-items: center; */
-		margin-left: 5rem;
-		margin-right: 5rem;
-		/* margin: auto; */
-		/* position: relative; */
-		gap: 1rem;
-	}
-	@keyframes blink {
-		0%, 100% {
-			opacity: 1;
-			color: transparent;
-		}
-		50% {
-			opacity: 1;
-			background-color: rgb(var(--accent-slightly-darker));
-		}
-	}
-	.blinking-cursor::after {
-		content: '_';
-		display: inline-block;
-		animation: blink 1s infinite;
-	}
-	.pfp {
-		width: 4rem;
-		height: 4rem;
-		border-radius: 50%;
-		object-fit: cover;
-	}
-	.small-circle {
-		width: 1rem;
-		height: 1rem;
-		border-radius: 50%;
-		object-fit: cover;
-		display: inline;
-	}
-	.flexrow {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		margin-top: 1rem;
-		/* max-width:40%;	 */
-	}
-	.flexcolumn {
-		display: flex;
-		flex-direction: column;
-		align-items: left;
-		margin: 1rem;
-	}
-	.text-large {
-		font-size:1.5rem;
-		font-weight: bold;
-	}
-	.background-gray {
-		/* padding: .3rem; */
-		/* background-color: gainsboro; */
-		/* margin: auto; */
-	}
-	.emphasis-low {
-		color: black;
-		opacity: 0.6;
-	}
-	.text-small {
-		font-size: smaller;
-	}
+  main {
+    margin: auto;
+    margin-top: 3rem;
+    /* max-width: calc(90% - 0rem); */
+    max-width: 85%;
+    min-width: 70%;
+    color: black;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    visibility: visible;
+    position: relative;
+  }
+  .header-bar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    display: absolute;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: gainsboro;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    opacity: 0.95;
+  }
+  .header-bar a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--accent));
+  }
+  .header-bar span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+  .right-header-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    /* align-items: center; */
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
 
+  .main-content {
+    margin: auto;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 95%;
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+      color: transparent;
+    }
+    50% {
+      opacity: 1;
+      background-color: rgb(var(--accent-slightly-darker));
+    }
+  }
+  .blinking-cursor::after {
+    content: "_";
+    display: inline-block;
+    animation: blink 1s infinite;
+  }
+
+  .pfp {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+  .small-circle {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+    display: inline;
+  }
+
+  .flexrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+  }
+  .flexcolumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .text-large {
+    font-size: large;
+    font-weight: bold;
+  }
+  .text-small {
+    font-size: small;
+  }
+  @media screen and (min-width: 636px) {
+    main {
+      /* max-width: %; */
+      margin-top: 3rem;
+    }
+    .header-bar {
+      height: 3rem;
+      font-size: medium;
+    }
+    .text-large {
+      font-size: x-large;
+      font-weight: bold;
+    }
+    .text-small {
+      font-size: medium;
+    }
+    .flexcolumn {
+    }
+    .flexrow {
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      gap: 1rem;
+    }
+    .main-content {
+      /* margin-left: 5rem;
+      margin-right: 5rem; */
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .pfp {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+  @media screen and (min-width: 1236px) {
+    main {
+      max-width: 65%;
+    }
+  }
+  .background-gray {
+    /* padding: .3rem; */
+    /* background-color: gainsboro; */
+    /* margin: auto; */
+  }
+  .emphasis-low {
+    color: black;
+    opacity: 0.6;
+  }
 </style>

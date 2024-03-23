@@ -1,63 +1,66 @@
-const svg = document.querySelector('svg.trail')
-const path = svg.querySelector('path')
+const svg = document.querySelector("svg.trail");
+const path = svg.querySelector("path");
 
-let points = []
-let segments = 15
+let points = [];
+let segments = 15;
 let mouse = {
   x: 0,
   y: 0,
-}
+};
 
 const move = (event) => {
-  const x = event.clientX
-  const y = event.clientY
+  const x = event.clientX;
+  const y = event.clientY;
 
-  mouse.x = x
-  mouse.y = y
+  mouse.x = x;
+  mouse.y = y;
 
   if (points.length === 0) {
     for (let i = 0; i < segments; i++) {
       points.push({
         x: x,
         y: y,
-      })
+      });
     }
   }
-}
+};
 
 const anim = () => {
   // starting point
-  let px = mouse.x
-  let py = mouse.y
+  let px = mouse.x;
+  let py = mouse.y;
 
   points.forEach((p, index) => {
-    p.x = px
-    p.y = py
+    p.x = px;
+    p.y = py;
 
-    let n = points[index + 1]
+    let n = points[index + 1];
 
     if (n) {
-      px = px - (p.x - n.x) * 0.6
-      py = py - (p.y - n.y) * 0.6
+      px = px - (p.x - n.x) * 0.6;
+      py = py - (p.y - n.y) * 0.6;
     }
-  })
+  });
 
-  path.setAttribute('d', `M ${points.map((p) => `${p.x} ${p.y}`).join(` L `)}`)
+  path.setAttribute("d", `M ${points.map((p) => `${p.x} ${p.y}`).join(` L `)}`);
 
-  requestAnimationFrame(anim)
-}
+  requestAnimationFrame(anim);
+};
 
 const resize = () => {
-  const ww = window.innerWidth
-  const wh = window.innerHeight
+  const ww = window.innerWidth;
+  const wh = window.innerHeight;
 
-  svg.style.width = ww + 'px'
-  svg.style.height = wh + 'px'
-  svg.setAttribute('viewBox', `0 0 ${ww} ${wh}`)
+  svg.style.width = ww + "px";
+  svg.style.height = wh + "px";
+  svg.setAttribute("viewBox", `0 0 ${ww} ${wh}`);
+};
+
+document.addEventListener("mousemove", move);
+window.addEventListener("resize", resize);
+
+if (window.matchMedia("(pointer: fine)").matches) {
+  // do something
+  anim();
+  resize();
 }
-
-document.addEventListener('mousemove', move)
-window.addEventListener('resize', resize)
-
-anim()
-resize()

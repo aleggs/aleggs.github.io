@@ -1,72 +1,102 @@
 ---
-import Parser from 'rss-parser';
-import Card from '../components/Card.astro';
+import Parser from "rss-parser";
+import Card from "../components/Card.astro";
 
 const rssParser = new Parser();
-// const SUBSTACK_URL = 'https://joinreboot.org/feed' // small feed to test min sizing
-// const SUBSTACK_URL = 'https://kliu.io/feed.xml' // large feed to test resizing
-const SUBSTACK_URL = 'https://threejackdaws.substack.com'
-const FEED_URL = SUBSTACK_URL
+// const SUBSTACK_URL = "https://joinreboot.org/feed"; // small feed to test min sizing
+// const SUBSTACK_URL = "https://kliu.io/feed.xml"; // large feed to test resizing
+const SUBSTACK_URL = "https://threejackdaws.substack.com";
+const FEED_URL = SUBSTACK_URL;
 
 async function getSubstackFeed(feedUrl: string) {
   try {
     const feed = await rssParser.parseURL(feedUrl);
     return feed.items;
   } catch (error) {
-    console.error('Error fetching or parsing RSS feed:', error);
+    console.error("Error fetching or parsing RSS feed:", error);
     return [];
   }
 }
 
 const feed = await getSubstackFeed(FEED_URL);
-
 ---
+
 <div class="substack-background">
   <h1 class="feed-title loading">live from substack</h1>
   <ul class="substack-gallery">
-    {feed.slice(0,3).map(item => (
-      <Card href={item.link} title={item.title} body={item.contentSnippet}></Card>
-    ))}
-    <li class="feed-error-message"><p>feed not found <img alt="dead emoji" title="deadge" class="inline" src="dead.png"></p></li>
+    {
+      feed
+        .slice(0, 3)
+        .map((item) => (
+          <Card
+            href={item.link}
+            title={item.title}
+            body={item.contentSnippet}
+          />
+        ))
+    }
+    <li style="margin-top:.5rem" class="feed-error-message">
+      <p>
+        feed not found <img
+          alt="dead emoji"
+          title="deadge"
+          class="inline"
+          src="dead.png"
+        />
+      </p>
+    </li>
   </ul>
 </div>
 <script>
-  if (document.querySelector('.link-card') == null) {
-    const msgBox = document.querySelector<HTMLElement>('.feed-error-message')
-    msgBox!.style.display = 'block';
+  if (document.querySelector(".link-card") == null) {
+    const msgBox = document.querySelector<HTMLElement>(".feed-error-message");
+    msgBox!.style.display = "block";
   }
 </script>
 
 <style>
   .feed-title {
-    margin-bottom: 20px;
     text-align: left;
     font-weight: bold;
   }
   .substack-gallery {
     display: grid;
-    gap: 2rem;
+    /* gap: 2rem; */
     position: relative;
     /* background-color: gray; */
-	}
+  }
   .substack-background {
-		gap: 2rem;
+    /* gap: 2rem; */
     position: relative;
     margin-bottom: 6rem;
-	}
+  }
   .loading::after {
     display: inline-block;
-    animation: dotdotdot steps(1,end) 3s infinite;
-    content: '';
+    animation: dotdotdot steps(1, end) 3s infinite;
+    content: "";
   }
   @keyframes dotdotdot {
-    0%   { content: ''; }
-    16.7%  { content: '.'; }
-    33.4%  { content: '..'; }
-    50%  { content: '...'; }
-    66.7% { content: '..'; }
-    83.4% { content: '.'; }
-    100% { content: ''; }
+    0% {
+      content: "";
+    }
+    16.7% {
+      content: ".";
+    }
+    33.4% {
+      content: "..";
+    }
+    50% {
+      content: "...";
+    }
+    66.7% {
+      content: "..";
+    }
+    83.4% {
+      content: ".";
+    }
+    100% {
+      content: "";
+    }
   }
   .feed-error-message {
     display: none;
@@ -76,5 +106,4 @@ const feed = await getSubstackFeed(FEED_URL);
     /* display: none; */
     height: 1.25rem;
   }
-  
 </style>
