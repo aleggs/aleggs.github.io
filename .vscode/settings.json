@@ -1,5 +1,8 @@
 {
-    "python.pythonPath": "/home/alex/code/aleggs.github.io/env/bin/python3",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "python.pythonPath": "/home/alex/code/aleggs.github.io/env/bin/python3",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
 }
