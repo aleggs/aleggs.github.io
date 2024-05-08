@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="mahalo">
+  <p class="mobile-spacer"></p>
+  <div class="text-container">
+    <div>
+      <p class="bigtext">Hello</p>
+      <p class="bigtext">World</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .mobile-spacer {
+    height: 30%;
+  }
+  @media screen and (min-width: 636px) {
+    .mobile-spacer {
+      height: 0%;
+    }
+  }
+
+  .bigtext {
+    text-align: left;
+    font-size: 715%;
+    font-weight: 400;
+    line-height: 0.9;
+    width: max-content;
+  }
+  @media screen and (min-width: 636px) {
+    .bigtext {
+      font-size: 2200%;
+    }
+  }
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+</style>

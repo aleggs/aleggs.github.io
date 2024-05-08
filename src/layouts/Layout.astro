@@ -1,4 +1,6 @@
 ---
+import HeaderBar from "../components/HeaderBar.astro";
+
 interface Props {
   title: string;
 }
@@ -18,52 +20,90 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <HeaderBar />
+    <main>
+      <slot />
+    </main>
   </body>
+
+  <style is:global>
+    :root {
+      /* --accent: 251, 211, 136; */
+      --accent: 255, 231, 122; /* Pantone 924 U #FFE77A */
+      --accent-light: 255, 240, 160;
+      --accent-slightly-darker: 255, 230, 113;
+      --accent-dark: 255, 211, 14;
+      --accent-gradient: linear-gradient(
+        45deg,
+        rgb(var(--accent)),
+        rgb(var(--accent-light)),
+        white 90%
+      );
+    }
+    html {
+      font-family: system-ui, sans-serif;
+      background: white;
+      background-size: 224px;
+      height: 100%;
+    }
+    body {
+      padding-top: 3rem;
+    }
+    code {
+      font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+    }
+    svg.trail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    svg.trail path {
+      fill: none;
+      stroke: rgb(var(--accent));
+      stroke-width: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+    main {
+      margin: 16px;
+      min-width: 70%;
+      color: black;
+      font-size: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      visibility: visible;
+      position: relative;
+      height: calc(100% - 3rem);
+    }
+    @media screen and (min-width: 636px) {
+      main {
+        margin: auto;
+        margin-top: 2rem;
+      }
+      .text-large {
+        font-size: x-large;
+        font-weight: bold;
+      }
+      .text-small {
+        font-size: medium;
+      }
+    }
+    @media screen and (min-width: 1236px) {
+      main {
+        max-width: 65%;
+      }
+    }
+  </style>
 </html>
-<style is:global>
-  :root {
-    /* --accent: 251, 211, 136; */
-    --accent: 255, 231, 122; /* Pantone 924 U #FFE77A */
-    --accent-light: 255, 240, 160;
-    --accent-slightly-darker: 255, 230, 113;
-    --accent-dark: 255, 211, 14;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)),
-      white 90%
-    );
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    background: white;
-    background-size: 224px;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-  svg.trail {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    pointer-events: none;
-  }
-  svg.trail path {
-    fill: none;
-    stroke: rgb(var(--accent));
-    stroke-width: 2px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    pointer-events: none;
-  }
-</style>

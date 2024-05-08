@@ -2,91 +2,29 @@
 import Layout from "../layouts/Layout.astro";
 import SubstackFeed from "../components/SubstackFeed.astro";
 import AboutMe from "../components/AboutMe.astro";
+import Trail from "../components/Trail.astro";
 ---
 
 <Layout title="hello there">
-  <div class="header-bar">
-    <span>
-      <span><a href="/">&#62; &#36; hello world!&nbsp;</a></span>
-      <span class="blinking-cursor"></span>
-    </span>
-    <span>
-      <div class="right-header-bar">
-        <a href="https://threejackdaws.substack.com">substack</a>
-      </div>
-    </span>
-  </div>
-
-  <main>
-    <div class="flexrow">
-      <img class="pfp" src="IMG_5463.png" />
-      <div class="flexcolumn">
-        <div class="text-large">alex xu</div>
-        <div class="emphasis-low text-small">sentient being since 2001</div>
-      </div>
-    </div>
+  <div class="flex-col-center">
     <div class="main-content">
+      <div class="flexrow">
+        <img class="pfp" src="IMG_5463.png" />
+        <div class="flex-col-left">
+          <div class="text-large">alex xu</div>
+          <div class="emphasis-low text-small">sentient being since 2001</div>
+        </div>
+      </div>
       <AboutMe />
       <SubstackFeed />
     </div>
-    <svg class="trail" viewBox="0 0 1 1">
-      <path d=""></path>
-    </svg>
-  </main>
+  </div>
 </Layout>
+<Trail />
 
-<!-- <script src="/src/scripts/resize.ts"></script> -->
-<script src="/src/scripts/mouse_trail.js"></script>
+<!-- <script src="/src/scripts/mouse_trail.js"></script> -->
 
 <style>
-  main {
-    margin: auto;
-    margin-top: 3rem;
-    /* max-width: calc(90% - 0rem); */
-    max-width: 85%;
-    min-width: 70%;
-    color: black;
-    font-size: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    visibility: visible;
-    position: relative;
-  }
-  .header-bar {
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    width: 100%;
-    display: absolute;
-    padding: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-color: gainsboro;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    opacity: 0.95;
-  }
-  .header-bar a:hover {
-    text-decoration: underline;
-    text-decoration-color: rgb(var(--accent));
-  }
-  .header-bar span {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
-  }
-  .right-header-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-    /* align-items: center; */
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
   .text-gradient {
     background-image: var(--accent-gradient);
     -webkit-background-clip: text;
@@ -101,26 +39,16 @@ import AboutMe from "../components/AboutMe.astro";
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
     max-width: 95%;
+    gap: 1rem;
+    width: max-content;
   }
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-      color: transparent;
-    }
-    50% {
-      opacity: 1;
-      background-color: rgb(var(--accent-slightly-darker));
-    }
+  .flexrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
   }
-  .blinking-cursor::after {
-    content: "_";
-    display: inline-block;
-    animation: blink 1s infinite;
-  }
-
   .pfp {
     width: 3.5rem;
     height: 3.5rem;
@@ -134,18 +62,14 @@ import AboutMe from "../components/AboutMe.astro";
     object-fit: cover;
     display: inline;
   }
-
-  .flexrow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-    gap: 1rem;
-  }
-  .flexcolumn {
+  .flex-col-left {
     display: flex;
     flex-direction: column;
+  }
+  .flex-col-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .text-large {
     font-size: large;
@@ -155,14 +79,6 @@ import AboutMe from "../components/AboutMe.astro";
     font-size: small;
   }
   @media screen and (min-width: 636px) {
-    main {
-      /* max-width: %; */
-      margin-top: 3rem;
-    }
-    .header-bar {
-      height: 3rem;
-      font-size: medium;
-    }
     .text-large {
       font-size: x-large;
       font-weight: bold;
@@ -170,34 +86,16 @@ import AboutMe from "../components/AboutMe.astro";
     .text-small {
       font-size: medium;
     }
-    .flexcolumn {
-    }
     .flexrow {
-      margin-top: 1.25rem;
-      margin-bottom: 0.5rem;
+      /* margin-top: 1.25rem; */
+      /* margin-bottom: 0.5rem; */
       gap: 1rem;
     }
     .main-content {
-      /* margin-left: 5rem;
-      margin-right: 5rem; */
       margin-left: 1.5rem;
       margin-right: 1.5rem;
       font-size: 1.1rem;
     }
-    .pfp {
-      width: 3.5rem;
-      height: 3.5rem;
-    }
-  }
-  @media screen and (min-width: 1236px) {
-    main {
-      max-width: 65%;
-    }
-  }
-  .background-gray {
-    /* padding: .3rem; */
-    /* background-color: gainsboro; */
-    /* margin: auto; */
   }
   .emphasis-low {
     color: black;

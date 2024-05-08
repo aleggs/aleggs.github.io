@@ -1,0 +1,70 @@
+<div class="header-bar">
+  <span>
+    <span><a href="/">&#62; &#36; hello world!&nbsp;</a></span>
+    <span class="blinking-cursor"></span>
+  </span>
+  <span>
+    <div class="right-header-bar">
+      <span><a href="/bigtext">bigtext</a></span>
+      <a href="https://threejackdaws.substack.com">substack</a>
+    </div>
+  </span>
+</div>
+
+<style>
+  .header-bar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    display: absolute;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: gainsboro;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    opacity: 0.95;
+  }
+  @media screen and (min-width: 636px) {
+    .header-bar {
+      font-size: medium;
+    }
+  }
+  .header-bar a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--accent));
+  }
+  .header-bar span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+  }
+  .right-header-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    /* align-items: center; */
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+      color: transparent;
+    }
+    50% {
+      opacity: 1;
+      background-color: rgb(var(--accent-slightly-darker));
+    }
+  }
+  .blinking-cursor::after {
+    content: "_";
+    display: inline-block;
+    animation: blink 1s infinite;
+  }
+</style>
