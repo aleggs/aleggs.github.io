@@ -7,9 +7,62 @@
     <div class="right-header-bar">
       <span><a href="/bigtext">bigtext</a></span>
       <a href="https://threejackdaws.substack.com">substack</a>
+      <span>
+        <span id="jade-square" style="color:#88be9e">&#9724;&#xfe0e;&nbsp;</span
+        >
+        <span id="gold-square" style="color:#FFE77A">&#9724;&#xfe0e;</span>
+      </span>
     </div>
   </span>
 </div>
+
+<script>
+  const jadeTheme = new Map([
+    ["--theme", "jade"],
+    ["--accent", "#bddaca"],
+    ["--accent-light", "#d7e9de"],
+    ["--accent-header", "#d7e9de"],
+    ["--accent-slightly-lighter", "#c7e0d1"],
+    ["--accent-slightly-darker", "#88be9e"],
+    ["--accent-cursor", "white"],
+    ["--accent-dark", "#569e74"],
+  ]);
+  const goldTheme = new Map([
+    ["--theme", "gold"],
+    // convert rgb values to Hex values
+    ["--accent", "#FFE77A"],
+    ["--accent-header", "gainsboro"],
+    ["--accent-light", "#FFF0A0"],
+    ["--accent-slightly-darker", "#FFE671"],
+    ["--accent-cursor", "#FFC971"],
+    ["--accent-dark", "#FFD30E"],
+  ]);
+  const jadeSquare = document.querySelector("#jade-square");
+  jadeSquare?.addEventListener("click", () => {
+    setJade();
+  });
+
+  const goldSquare = document.querySelector("#gold-square");
+  goldSquare?.addEventListener("click", () => {
+    setGold();
+  });
+
+  function setJade() {
+    console.log("swapped theme to jade");
+    var r = document.querySelector(":root") as HTMLElement;
+    jadeTheme.forEach((values, vars) => {
+      r.style.setProperty(vars, values);
+    });
+  }
+
+  function setGold() {
+    console.log("swapped theme to gold");
+    var r = document.querySelector(":root") as HTMLElement;
+    goldTheme.forEach((values, vars) => {
+      r.style.setProperty(vars, values);
+    });
+  }
+</script>
 
 <style>
   .header-bar {
@@ -21,7 +74,8 @@
     padding: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
+    background-color: var(--accent-header);
     height: 3rem;
     display: flex;
     align-items: center;
@@ -36,7 +90,7 @@
   }
   .header-bar a:hover {
     text-decoration: underline;
-    text-decoration-color: rgb(var(--accent));
+    text-decoration-color: var(--accent);
   }
   .header-bar span {
     display: inline-block;
@@ -47,9 +101,9 @@
     display: flex;
     flex-direction: row;
     align-items: left;
-    /* align-items: center; */
     justify-content: space-between;
     gap: 1.5rem;
+    align-items: center;
   }
   @keyframes blink {
     0%,
@@ -59,7 +113,8 @@
     }
     50% {
       opacity: 1;
-      background-color: rgb(var(--accent-slightly-darker));
+      /* background-color: rgb(var(--accent-slightly-darker)); */
+      background-color: var(--accent-cursor);
     }
   }
   .blinking-cursor::after {

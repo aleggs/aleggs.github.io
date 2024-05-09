@@ -2,6 +2,10 @@
 
 What are we working on today?
 
+##### 1.1
+
+- Misty jade color scheme <span style="color:rgb(189,218,202)">&#9724;</span>
+
 ##### 1.01
 
 - Fix margins for desktop (it leans left right now)
