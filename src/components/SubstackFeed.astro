@@ -29,9 +29,9 @@ const feed = await getSubstackFeed(FEED_URL);
         .slice(0, 3)
         .map((item) => (
           <Card
-            href={item.link}
-            title={item.title}
-            body={item.contentSnippet}
+            href={item.link ? item.link : ""}
+            title={item.title ? item.title : ""}
+            body={item.contentSnippet ? item.contentSnippet : ""}
           />
         ))
     }
