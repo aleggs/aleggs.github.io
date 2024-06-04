@@ -10,7 +10,11 @@ const FEED_URL = SUBSTACK_URL;
 
 async function getSubstackFeed(feedUrl: string) {
   try {
-    const feed = await rssParser.parseURL(feedUrl);
+    const response = await fetch(FEED_URL);
+    const data = await response.text();
+
+    const feed = await rssParser.parseString(data);
+
     return feed.items;
   } catch (error) {
     console.error("Error fetching or parsing RSS feed:", error);
