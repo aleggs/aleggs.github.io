@@ -5,7 +5,7 @@ import Card from "../components/Card.astro";
 const rssParser = new Parser();
 // const SUBSTACK_URL = "https://joinreboot.org/feed"; // small feed to test min sizing
 // const SUBSTACK_URL = "https://kliu.io/feed.xml"; // large feed to test resizing
-const SUBSTACK_URL = "https://threejackdaws.substack.com";
+const SUBSTACK_URL = "https://threejackdaws.substack.com/feed";
 const FEED_URL = SUBSTACK_URL;
 
 async function getSubstackFeed(feedUrl: string) {
@@ -58,6 +58,7 @@ const feed = await getSubstackFeed(FEED_URL);
   .feed-title {
     text-align: left;
     font-weight: bold;
+    font-size: x-large;
   }
   .substack-gallery {
     display: grid;

@@ -7,6 +7,7 @@ import Trail from "../components/Trail.astro";
 
 <Layout title="hello there">
   <div class="flex-col-center">
+    <p style="white-space:pre-wrap;" class="mobile-spacer"></p>
     <div class="main-content">
       <div class="flexrow">
         <img class="pfp" src="IMG_5463.png" />
@@ -16,15 +17,22 @@ import Trail from "../components/Trail.astro";
         </div>
       </div>
       <AboutMe />
+      <br />
       <SubstackFeed />
     </div>
   </div>
 </Layout>
 <Trail />
 
-<!-- <script src="/src/scripts/mouse_trail.js"></script> -->
-
 <style>
+  .mobile-spacer {
+    margin-bottom: 10px;
+  }
+  @media screen and (min-width: 636px) {
+    .mobile-spacer {
+      margin-bottom: 40px;
+    }
+  }
   .text-gradient {
     background-image: var(--accent-gradient);
     -webkit-background-clip: text;
@@ -95,6 +103,8 @@ import Trail from "../components/Trail.astro";
       margin-left: 1.5rem;
       margin-right: 1.5rem;
       font-size: 1.1rem;
+      /* max-width: 30em; */
+      max-width: var(--content-width-medium);
     }
   }
   .emphasis-low {
