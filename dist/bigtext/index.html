@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#DEDEDE"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v3.1.2"><title>mahalo</title><link rel="stylesheet" href="/_astro/bigtext.0ec1ec86.css" />
+<style>.mobile-spacer[data-astro-cid-qhwri22h]{height:30%}@media screen and (min-width: 636px){.mobile-spacer[data-astro-cid-qhwri22h]{height:0%}}.bigtext[data-astro-cid-qhwri22h]{text-align:left;font-size:37vw;font-weight:500;line-height:.9;width:-moz-max-content;width:max-content}.text-container[data-astro-cid-qhwri22h]{display:flex;flex-direction:column;align-items:center;position:relative}
+</style><script type="module" src="/_astro/hoisted.6f47f3b9.js"></script>
+<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
+/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
+var N = Object.defineProperty;
+var i = (t, n) => () => (t && (n = t((t = 0))), n);
+var b = (t, n) => {
+	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
+};
+function s() {
+	if (d === void 0) {
+		let t = document.createElement('div');
+		(t.innerHTML = '<div><template shadowroot="open" shadowrootmode="open"></template></div>'),
+			(d = !!t.firstElementChild.shadowRoot);
+	}
+	return d;
+}
+var d,
+	m = i(() => {});
+var p,
+	c,
+	f,
+	u = i(() => {
+		(p = (t) => t.parentElement === null),
+			(c = (t) => t.tagName === 'TEMPLATE'),
+			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
+	});
+var h,
+	E = i(() => {
+		m();
+		u();
+		h = (t) => {
+			var n;
+			if (s()) return;
+			let a = [],
+				e = t.firstElementChild;
+			for (; e !== t && e !== null; )
+				if (c(e)) a.push(e), (e = e.content);
+				else if (e.firstElementChild !== null) e = e.firstElementChild;
+				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
+				else {
+					let o;
+					for (; e !== t && e !== null; )
+						if (p(e)) {
+							o = a.pop();
+							let r = o.parentElement,
+								l = o.getAttribute('shadowroot');
+							if (((e = o), l === 'open' || l === 'closed')) {
+								let y = o.hasAttribute('shadowrootdelegatesfocus');
+								try {
+									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
+								} catch {}
+							} else o = void 0;
+						} else {
+							let r = e.nextElementSibling;
+							if (r != null) {
+								(e = r), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							let l =
+								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
+							if (l != null) {
+								(e = l), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
+						}
+				}
+		};
+	});
+var w = i(() => {
+	E();
+});
+var v = {};
+b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
+var S = i(() => {
+	m();
+	w();
+});
+async function g() {
+	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
+	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
+}
+var x = new DOMParser()
+	.parseFromString(
+		'<p><template shadowroot="open" shadowrootmode="open"></template></p>',
+		'text/html',
+		{
+			includeShadowRoots: !0,
+		}
+	)
+	.querySelector('p');
+(!x || !x.shadowRoot) && g();
+</script></head><body><div class="header-bar" data-astro-cid-inycvona><span data-astro-cid-inycvona><span data-astro-cid-inycvona><a href="/" data-astro-cid-inycvona>&#62; &#36; hello world!&nbsp;</a></span><span class="blinking-cursor" data-astro-cid-inycvona></span></span><span data-astro-cid-inycvona><div class="right-header-bar" data-astro-cid-inycvona><span data-astro-cid-inycvona><a href="/bigtext" data-astro-cid-inycvona>bigtext</a></span><a href="https://threejackdaws.substack.com" data-astro-cid-inycvona>substack</a><span data-astro-cid-inycvona><span id="jade-square" style="color:#88be9e" data-astro-cid-inycvona>&#9724;&#xfe0e;&nbsp;</span><span id="gold-square" style="color:#FFE77A" data-astro-cid-inycvona>&#9724;&#xfe0e;</span></span></div></span></div><main><p class="mobile-spacer" data-astro-cid-qhwri22h></p><div class="text-container" data-astro-cid-qhwri22h><div data-astro-cid-qhwri22h><p class="bigtext" data-astro-cid-qhwri22h>Hello</p><p class="bigtext" data-astro-cid-qhwri22h>World</p></div></div></main></body></html>
