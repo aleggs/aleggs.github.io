@@ -21,8 +21,19 @@ async function getSubstackFeed(feedUrl: string) {
     return [];
   }
 }
+import feedxml from "../data/feed.xml?raw";
 
-const feed = await getSubstackFeed(FEED_URL);
+async function getFeedFromFile() {
+  try {
+    const feed = await rssParser.parseString(feedxml);
+    return feed.items;
+  } catch (error) {
+    console.error("Error fetching or parsing RSS file:", error);
+    return [];
+  }
+}
+// const feed = await getSubstackFeed(FEED_URL);
+const feed = await getFeedFromFile();
 ---
 
 <div class="substack-background">
