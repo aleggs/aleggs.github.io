@@ -2,7 +2,7 @@ name: Refresh Feed
 on:
   schedule:
     - cron: 10 00 * * 0-6
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
   fetch-rss:
