@@ -1,0 +1,19 @@
+name: Update QOTD
+
+on:
+#   push:
+#     branches: [master]
+  workflow_dispatch:
+  schedule:
+    - cron: 10 00 * * 0
+
+jobs:
+  update-qotd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run script
+        env:
+          notion_page_id: ${{ secrets.notionPageId }}
+          notion_secret: ${{ secrets.notionSecret }}
+        run:
+          Node src/scripts/get_qotd.js
