@@ -7,13 +7,13 @@ import Trail from "../components/Trail.astro";
 
 <Layout title="hello there">
   <div class="flex-col-center">
-    <p style="white-space:pre-wrap;" class="mobile-spacer"></p>
+    <!-- <p style="white-space:pre-wrap;" class="mobile-spacer"></p> -->
     <div class="main-content">
       <div class="flexrow">
         <img class="pfp" src="IMG_5463.png" />
         <div class="flex-col-left">
-          <div class="text-large">alex xu</div>
-          <div class="emphasis-low text-small">sentient being since 2001</div>
+          <div class="text-large">Alex Xu</div>
+          <div class="emphasis-low text-small">Sentient being since 2001</div>
         </div>
       </div>
       <AboutMe />
@@ -21,94 +21,96 @@ import Trail from "../components/Trail.astro";
       <SubstackFeed />
     </div>
   </div>
-</Layout>
-<Trail />
 
-<style>
-  .mobile-spacer {
-    margin-bottom: 10px;
-  }
-  @media screen and (min-width: 636px) {
+  <Trail />
+
+  <style>
     .mobile-spacer {
-      /* margin-bottom: 40px; */
+      margin-bottom: 10px;
     }
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
+    @media screen and (min-width: 636px) {
+      .mobile-spacer {
+        margin-bottom: 0px;
+      }
+    }
+    .text-gradient {
+      background-image: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 400%;
+      background-position: 0%;
+    }
 
-  .main-content {
-    margin: auto;
-    font-size: medium;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 95%;
-    gap: 1rem;
-    width: max-content;
-  }
-  .flexrow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-  .pfp {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 1rem;
-    object-fit: cover;
-  }
-  .small-circle {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    object-fit: cover;
-    display: inline;
-  }
-  .flex-col-left {
-    display: flex;
-    flex-direction: column;
-  }
-  .flex-col-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .text-large {
-    font-size: large;
-    font-weight: bold;
-  }
-  .text-small {
-    font-size: small;
-  }
-  @media screen and (min-width: 636px) {
+    .main-content {
+      margin: auto;
+      font-size: medium;
+      /* font-size: 4vw; */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 95%;
+      gap: 1rem;
+      width: max-content;
+    }
+    .flexrow {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+    .pfp {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 1rem;
+      object-fit: cover;
+    }
+    .small-circle {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      object-fit: cover;
+      display: inline;
+    }
+    .flex-col-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .flex-col-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .text-large {
-      font-size: x-large;
+      font-size: large;
       font-weight: bold;
     }
     .text-small {
-      font-size: medium;
+      font-size: small;
     }
-    .flexrow {
-      /* margin-top: 1.25rem; */
-      /* margin-bottom: 0.5rem; */
-      gap: 1rem;
+    @media screen and (min-width: 636px) {
+      .text-large {
+        font-size: x-large;
+        font-weight: bold;
+      }
+      .text-small {
+        font-size: medium;
+      }
+      .flexrow {
+        /* margin-top: 1.25rem; */
+        /* margin-bottom: 0.5rem; */
+        gap: 1rem;
+      }
+      .main-content {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        font-size: 1.1rem;
+        /* max-width: 30em; */
+        max-width: var(--content-width-medium);
+      }
     }
-    .main-content {
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
-      font-size: 1.1rem;
-      /* max-width: 30em; */
-      max-width: var(--content-width-medium);
+    .emphasis-low {
+      color: black;
+      opacity: 0.6;
     }
-  }
-  .emphasis-low {
-    color: black;
-    opacity: 0.6;
-  }
-</style>
+  </style>
+</Layout>

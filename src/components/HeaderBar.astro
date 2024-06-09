@@ -5,13 +5,14 @@
   </span>
   <span>
     <div class="right-header-bar">
-      <span><a href="/bigtext">bigtext</a></span>
-      <a href="https://threejackdaws.substack.com">substack</a>
-      <span>
+      <!-- <span><a href="/bigtext">bigtext</a></span> -->
+      <span><a href="/qotd">QOTD</a></span>
+      <a href="https://threejackdaws.substack.com">Substack</a>
+      <!-- <span>
         <span id="jade-square" style="color:#88be9e">&#9724;&#xfe0e;&nbsp;</span
         >
         <span id="gold-square" style="color:#FFE77A">&#9724;&#xfe0e;</span>
-      </span>
+      </span> -->
     </div>
   </span>
 </div>
@@ -72,16 +73,23 @@
     width: 100%;
     display: absolute;
     padding: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    /* padding-top: 1.2rem; */
     /* background-color: gainsboro; */
-    background-color: var(--accent-header);
+    /* background-color: var(--accent-header); */
+    /* border: darkgray;
+    border: var(--accent-light);
+    border-bottom-style: solid;
+    border-bottom-width: 1px; */
+    background-color: white;
     height: 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 0.9rem;
     opacity: 0.95;
+    text-transform: lowercase;
   }
   @media screen and (min-width: 636px) {
     .header-bar {
@@ -102,7 +110,7 @@
     flex-direction: row;
     align-items: left;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: center;
   }
   @keyframes blink {

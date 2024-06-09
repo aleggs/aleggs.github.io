@@ -2,6 +2,14 @@
 
 What are we working on today?
 
+##### 1.3
+
+- qotd page
+
+##### 1.2
+
+- fixed substack feed integration with hacky method
+
 ##### 1.1
 
 - Misty jade color scheme <span style="color:rgb(189,218,202)">&#9724;</span>

@@ -1,0 +1,49 @@
+---
+// Randomly shows a quote based on list pulled using Notion's internal integration API.
+
+import Layout from "../layouts/Layout.astro";
+import quotes from "../data/qotd.json";
+
+const entry = quotes[Math.floor(Math.random() * quotes.length)];
+const quote = entry.quote;
+const author = entry.author;
+---
+
+<Layout title="Quote of the Day">
+  <div class="main-content">
+    <div class="qotd">
+      <p>
+        <q>
+          {quote}
+        </q>
+        <br />
+        <p class="author">
+          {author ? "—" + author : ""}
+        </p>
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .qotd {
+    font-family: serif;
+    font-size: 5vw;
+    text-align: center;
+    padding: 2.5%;
+  }
+  @media screen and (min-width: 636px) {
+    .qotd {
+      padding: 12.5%;
+      font-size: 2.5vw;
+    }
+  }
+  q {
+  }
+  .author {
+    font-style: italic;
+    text-align: right;
+    font-size: 90%;
+    margin-right: 2.5%;
+  }
+</style>

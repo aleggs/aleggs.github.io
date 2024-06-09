@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/lit": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
+    "@notionhq/client": "^2.2.15",
     "@webcomponents/template-shadowroot": "^0.2.1",
     "astro": "^3.1.2",
     "lit": "^2.8.0",

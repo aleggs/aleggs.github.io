@@ -1,5 +1,6 @@
-abcdefg jekyll is my enemy
+From Jekyll and Ruby, tired and old,
+I switched to Astro, simple and bold.
+Although CSS is still a blight,
+Astro now guides my website's flight.
 
-stick a shotgun in his eye, pull the trigger watch him fly
-
-abcdefg now we use astro yippee
+- Claude wrote 25% of this poem, Alex wrote the other 75%.
