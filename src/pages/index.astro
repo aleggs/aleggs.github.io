@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import SubstackFeed from "../components/SubstackFeed.astro";
 import AboutMe from "../components/AboutMe.astro";
-import Trail from "../components/Trail.astro";
 ---
 
 <Layout title="hello there">
@@ -21,8 +20,6 @@ import Trail from "../components/Trail.astro";
       <SubstackFeed />
     </div>
   </div>
-
-  <Trail />
 
   <style>
     .mobile-spacer {
@@ -105,7 +102,7 @@ import Trail from "../components/Trail.astro";
         margin-right: 1.5rem;
         font-size: 1.1rem;
         /* max-width: 30em; */
-        max-width: var(--content-width-medium);
+        /* max-width: var(--content-width-medium); THIS WAS CAUSING MASSIVE PROBLEMS w RESPONSIVENESS */
       }
     }
     .emphasis-low {

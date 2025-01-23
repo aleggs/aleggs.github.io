@@ -1,5 +1,7 @@
 ---
-import HeaderBar from "../components/HeaderBar.astro";
+import CenteredHeaderBar from "../components/CenteredHeaderBar.astro";
+// import HeaderBar from "../components/HeaderBar.astro";
+import Trail from "../components/Trail.astro";
 
 interface Props {
   title: string;
@@ -20,20 +22,22 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <HeaderBar />
+    <!-- <HeaderBar /> -->
+    <CenteredHeaderBar />
     <main>
       <slot />
     </main>
   </body>
+  <Trail />
 
   <style is:global>
-    :root {
+    /* :root {
       --theme: "gold";
       --accent: #ffe77a;
       --accent-light: #fff0a0;
       --accent-header: gainsboro;
-      --accent-slightly-darker: #ffe671;
-      --accent-dark: #ffd30e;
+      --accent-dark: #ffe671;
+      --accent-darker: #ffd30e;
       --accent-cursor: #ffe671;
       --accent-gradient: linear-gradient(
         45deg,
@@ -44,32 +48,31 @@ const { title } = Astro.props;
       --content-width: 780px;
       --content-width-small: 560px;
       --content-width-medium: 700px;
-    }
+      --trail-color: var(--accent);
+    } */
 
-    /* :root {
+    :root {
       --theme: "jade";
       --accent: #bddaca;
-      --accent-light: #d7e9de;
+      --accent-lighter: #d7e9de;
       --accent-header: #d7e9de;
-      --accent-slightly-lighter: #c7e0d1;
-      --accent-slightly-darker: #88be9e;
-      --accent-dark: #569e74;
-      --accent-cursor: white;
+      --accent-light: #c7e0d1;
+      --accent-dark: #88be9e;
+      --accent-darker: #569e74;
+      --accent-cursor: var(--accent);
       --accent-gradient: linear-gradient(
         45deg,
         var(--accent),
-        var(--accent-light),
+        var(--accent-lighter),
         white 90%
       );
-    } */
+      --trail-color: #e7647a;
+    }
     html {
       font-family: system-ui, sans-serif;
       background: white;
       background-size: 224px;
       height: 100%;
-    }
-    body {
-      padding-top: 3rem;
     }
     code {
       font-family:
@@ -91,12 +94,13 @@ const { title } = Astro.props;
     }
     svg.trail path {
       fill: none;
-      stroke: var(--accent);
+      stroke: var(--trail-color);
       stroke-width: 2px;
       stroke-linecap: round;
       stroke-linejoin: round;
       pointer-events: none;
     }
+    /* TODO: come back and fix this shit. This also does not belong in Layout, should be in Main. */
     main {
       margin: 16px;
       min-width: 70%;
@@ -112,7 +116,6 @@ const { title } = Astro.props;
     @media screen and (min-width: 636px) {
       main {
         margin: auto;
-        margin-top: 2rem;
       }
       .text-large {
         font-size: x-large;

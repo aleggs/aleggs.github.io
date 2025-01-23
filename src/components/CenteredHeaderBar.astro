@@ -1,0 +1,46 @@
+---
+
+---
+
+<div class="header-bar">
+  <div class="banner">
+    <span><a href="/">Alex's Digital Garden</a> </span>
+  </div>
+  <div class="navigation-items">
+    <span><a href="/bigtext">Big Text</a> </span>
+    <span><a href="/qotd">QOTD</a> </span>
+    <span><a href="/thingsilike">Things I like</a> </span>
+    <span><a href="/bookshelf">Bookshelf</a> </span>
+  </div>
+</div>
+
+<style>
+  .header-bar {
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    margin-top: 1.5rem;
+    /* height: 3rem; */
+    font-size: 0.9rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (min-width: 636px) {
+    .header-bar {
+      font-size: medium;
+    }
+  }
+  .navigation-items {
+    display: flex;
+    gap: 1rem;
+  }
+  .navigation-items a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+  .banner {
+    font-size: x-large;
+  }
+</style>

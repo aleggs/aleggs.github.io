@@ -2,6 +2,15 @@
 
 What are we working on today?
 
+- Script to set site theme
+- Centered header bar, creation of bookshelf page, creation of crappy writings page
+- This site is still not responsive (lmao)
+- Use content collections (https://docs.astro.build/en/guides/content-collections/) to build bookshelf
+
+##### 1.4
+
+- Rework site to be less "college CS student" and more of a home for writings, book & media ratings, etc.
+
 ##### 1.3
 
 - qotd page

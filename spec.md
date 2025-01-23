@@ -15,6 +15,7 @@
 - CSS: Tailwind
 
 ## Home Page Layout
+
 front and center: substack feed/gallery showing off my writings
 
 red dot cursor and sidebar highlight
@@ -29,15 +30,16 @@ background very light grey
 accent color yellow
 
 ### Home Page
+
 Alex Xu
 Home Row
 
 Hi, I'm Alex Xu :)
 Welcome to my digital garden! Here I'll be collecting little pieces of things I'll write and build over the next few years.
 
+#### Inspiration
 
-
-inspiration:
+https://danwang.co/
 ava-sessions.com
 
 https://www.pinterest.com/pin/203225001920853594/
