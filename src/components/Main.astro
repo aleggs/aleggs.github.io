@@ -1,0 +1,20 @@
+---
+// The purpose of this block is to add a margin to the main content that keeps the site responsive and aesthetic.
+---
+
+<div class="main-content">
+  <slot />
+</div>
+
+<style>
+  .main-content {
+    margin: auto;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 95%;
+    gap: 1rem;
+    width: max-content;
+  }
+</style>

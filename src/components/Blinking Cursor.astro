@@ -2,10 +2,10 @@
 
 ---
 
-<span>
-  <span><a href="/">&#62; &#36; hello world&nbsp;</a></span>
-  <span class="blinking-cursor"></span>
-</span>
+<!-- <span>
+  <span><a href="/">&#62; &#36; hello world&nbsp;</a></span> --><!-- &nbsp;
+</span> -->
+<span class="blinking-cursor"></span>
 
 <style>
   @keyframes blink {
@@ -22,6 +22,7 @@
   .blinking-cursor::after {
     content: "_";
     display: inline-block;
-    animation: blink 1s infinite;
+    animation: blink 1.2s infinite;
+    height: 1.5rem;
   }
 </style>

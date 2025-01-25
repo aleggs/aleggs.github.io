@@ -1,16 +1,39 @@
 ---
+import BlinkingCursor from "./Blinking Cursor.astro";
 
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  currentPath === href || currentPath.startsWith(href);
 ---
 
 <div class="header-bar">
   <div class="banner">
-    <span><a href="/">Alex's Digital Garden</a> </span>
+    <a href="/">
+      <span
+        style="display: flex; flex-direction: column; align-items: center; gap: .5rem"
+      >
+        <img class="pfp" src="IMG_6138.jpeg" />
+        <span>
+          Alex's Digital Garden <BlinkingCursor />
+        </span>
+      </span>
+    </a>
   </div>
   <div class="navigation-items">
-    <span><a href="/bigtext">Big Text</a> </span>
-    <span><a href="/qotd">QOTD</a> </span>
-    <span><a href="/thingsilike">Things I like</a> </span>
-    <span><a href="/bookshelf">Bookshelf</a> </span>
+    <!-- <span><a href="/bigtext">Big Text</a> </span> -->
+    <span
+      ><a class={isActive("/bookshelf") ? "active" : ""} href="/bookshelf"
+        >Bookshelf</a
+      >
+    </span>
+    <!-- <span
+      ><a class={isActive("/thingsilike") ? "active" : ""} href="/thingsilike"
+        >Things I like</a
+      >
+    </span> -->
+    <span
+      ><a class={isActive("/qotd") ? "active" : ""} href="/qotd">QOTD</a>
+    </span>
   </div>
 </div>
 
@@ -22,10 +45,11 @@
     justify-content: center;
     padding: 0.5rem;
     margin-top: 1.5rem;
-    /* height: 3rem; */
     font-size: 0.9rem;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1.5rem;
+    font-family: "Hoefler Text", georgia, "times new roman", serif;
   }
   @media screen and (min-width: 636px) {
     .header-bar {
@@ -40,7 +64,18 @@
     text-decoration: underline;
     text-decoration-color: var(--accent);
   }
+  .active {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-dark);
+  }
   .banner {
     font-size: x-large;
+    margin-bottom: 0.2rem;
+  }
+  .pfp {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
   }
 </style>

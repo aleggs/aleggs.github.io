@@ -15,6 +15,7 @@
     "@notionhq/client": "^2.2.15",
     "@webcomponents/template-shadowroot": "^0.2.1",
     "astro": "^5.1.8",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "lit": "^2.8.0",
     "prettier-plugin-html-template-literals": "^1.0.5",

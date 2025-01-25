@@ -1,7 +1,37 @@
 ---
+import Main from "../components/Main.astro";
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
+const bookshelf = await getCollection("bookshelf");
 ---
 
 <Layout title="Bookshelf">
-  <div></div>
+  <Main>
+    <div>
+      <ul>
+        {
+          bookshelf.map((post) => (
+            <li>
+              <a href={`/${post.id}`}>
+                <span class="title">{post.data.title},</span>
+                <span class="date">
+                  {formatDistanceToNow(post.data.date)} ago
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Main>
 </Layout>
+
+<style>
+  .title {
+    text-decoration: underline;
+  }
+  .date {
+    font-size: smaller;
+  }
+</style>

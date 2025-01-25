@@ -4,7 +4,9 @@
 import Layout from "../layouts/Layout.astro";
 import quotes from "../data/qotd.json";
 
-const entry = quotes[Math.floor(Math.random() * quotes.length)];
+// const entry = quotes[Math.floor(Math.random() * quotes.length)];
+// const entry = quotes[quotes.length - 1];
+const entry = quotes[new Date(Date.now()).getDay() % quotes.length];
 const quote = entry.quote;
 const author = entry.author;
 ---
@@ -13,12 +15,12 @@ const author = entry.author;
   <div class="main-content">
     <div class="qotd">
       <p>
-        <q>
+        <q id="quote">
           {quote}
         </q>
         <br />
         <p class="author">
-          {author ? "—" + author : ""}
+          - {author ? author : "Anonymous"}
         </p>
       </p>
     </div>
@@ -37,8 +39,6 @@ const author = entry.author;
       padding: 12.5%;
       font-size: 2.5vw;
     }
-  }
-  q {
   }
   .author {
     font-style: italic;
