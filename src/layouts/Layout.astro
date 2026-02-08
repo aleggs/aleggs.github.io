@@ -16,7 +16,7 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#DEDEDE" />
+    <meta name="theme-color" content="#ffe77a" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -31,7 +31,7 @@ const { title } = Astro.props;
   <Trail />
 
   <style is:global>
-    /* :root {
+    :root {
       --theme: "gold";
       --accent: #ffe77a;
       --accent-light: #fff0a0;
@@ -49,9 +49,9 @@ const { title } = Astro.props;
       --content-width-small: 560px;
       --content-width-medium: 700px;
       --trail-color: var(--accent);
-    } */
+    }
 
-    :root {
+    /* :root {
       --theme: "jade";
       --accent: #bddaca;
       --accent-lighter: #d7e9de;
@@ -68,7 +68,7 @@ const { title } = Astro.props;
         white 90%
       );
       --trail-color: #e7647a;
-    }
+    } */
     html {
       font-family: georgia, "times new roman", serif;
       /* font-family: system-ui, sans-serif; */
