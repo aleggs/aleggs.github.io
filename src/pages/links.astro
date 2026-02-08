@@ -1,0 +1,50 @@
+---
+import Main from "../components/Main.astro";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const links = await getCollection("links");
+---
+
+<Layout title="Links">
+  <Main>
+    <div class="links-container">
+      <p class="description">
+        Links I find useful or interesting enough to curate, but don't visit
+        often enough to clutter my bookmarks bar with.
+      </p>
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.data.url} target="_blank" rel="noopener noreferrer">
+                <span class="title">{link.data.title}</span>
+              </a>
+              {link.data.note && <span class="note"> - {link.data.note}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Main>
+</Layout>
+
+<style>
+  .title {
+    text-decoration: underline;
+  }
+  .note {
+    font-size: smaller;
+    color: #666;
+  }
+  .links-container {
+    margin-top: 1rem;
+  }
+  .description {
+    opacity: 0.6;
+    font-size: small;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+</style>

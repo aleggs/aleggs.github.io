@@ -14,8 +14,16 @@ const bookshelf = defineCollection({
     // author: z.string(),
     date: z.coerce.date(),
   }),
-  /* ... */
+});
+
+const links = defineCollection({
+  loader: file("src/data/links.json"),
+  schema: z.object({
+    url: z.string(),
+    title: z.string(),
+    note: z.string().optional(),
+  }),
 });
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { bookshelf };
+export const collections = { bookshelf, links };
