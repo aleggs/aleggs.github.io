@@ -15,6 +15,12 @@ try {
   if (fs.existsSync(adventurePicsPath)) {
     const files = fs.readdirSync(adventurePicsPath);
     images = files.filter((file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file));
+
+    // Fisher-Yates Shuffle
+    for (let i = images.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [images[i], images[j]] = [images[j], images[i]];
+    }
   }
 } catch (error) {
   console.log("Could not read adventure-pics directory:", error);
@@ -42,7 +48,7 @@ try {
               const imagePath = `/adventure-pics/${filename}`;
               return (
                 <div
-                  class={`photo-item photo-${(index % 5) + 1}`}
+                  class={`photo-item photo-${(index % 10) + 1}`}
                   data-lightbox="gallery"
                   data-src={imagePath}
                 >
@@ -72,8 +78,9 @@ try {
 <style>
   :global(.main-content) {
     width: 100%;
-    max-width: 100%;
+    max-width: 1200px;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .gallery-container {
@@ -120,9 +127,10 @@ try {
     grid-auto-rows: 180px;
     grid-auto-flow: dense;
     gap: 1rem;
-    padding: 0rem;
+    padding: 1rem;
     padding-bottom: 3rem;
     max-width: 1200px;
+    width: 100%;
     box-sizing: border-box;
   }
 
@@ -139,7 +147,7 @@ try {
   }
 
   .photo-item:hover {
-    transform: translateY(-4px) rotate(1deg);
+    transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   }
 
@@ -150,31 +158,48 @@ try {
     display: block;
   }
 
-  /* Collage-style sizing variations */
+  /* Grid spanning variations */
   .photo-1 {
     grid-column: span 2;
     grid-row: span 1;
-    transform: rotate(-1deg);
   }
 
   .photo-2 {
-    transform: rotate(1deg);
+    /* Square */
   }
 
   .photo-3 {
-    grid-column: span 2;
-    grid-row: span 1;
-    transform: rotate(0.5deg);
+    /* Square */
   }
 
   .photo-4 {
-    transform: rotate(-0.5deg);
+    /* Square */
   }
 
   .photo-5 {
+    /* Square */
+  }
+
+  .photo-6 {
+    /* Square */
+  }
+
+  .photo-7 {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .photo-8 {
     grid-column: span 2;
-    grid-row: span 1;
-    transform: rotate(-0.2deg);
+    grid-row: span 2;
+  }
+
+  .photo-9 {
+    /* Square */
+  }
+
+  .photo-10 {
+    /* Square */
   }
 
   /* Varied image sizing */
@@ -224,14 +249,31 @@ try {
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 635px) {
     .photo-gallery {
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0.5rem !important;
+      padding: 0.5rem !important;
     }
 
     .photo-item {
-      border-radius: 0.5rem;
+      border-radius: 0.5rem !important;
+      transform: none !important;
+    }
+
+    .photo-1, .photo-3, .photo-5, .photo-8, .photo-10 {
+      grid-column: span 2 !important;
+      transform: none !important;
+    }
+
+    .photo-2, .photo-4, .photo-6, .photo-9 {
+      grid-column: span 1 !important;
+      transform: none !important;
+    }
+
+    .photo-7 {
+      grid-row: span 2 !important;
+      grid-column: span 1 !important;
     }
   }
 
@@ -344,34 +386,32 @@ try {
     });
 
     function applySmartLayout() {
-      // Create distribution pattern to avoid clustering
-      const verticalIndices = imageData
-        .filter((img) => img.isVertical)
-        .map((img) => img.index);
-      const wideIndices = imageData
-        .filter((img) => img.isWide)
-        .map((img) => img.index);
-
       imageData.forEach((imgData, i) => {
         const item = imgData.item;
-        const baseClass = `photo-${(imgData.index % 5) + 1}`;
-
-        // Add some randomness to avoid predictable patterns
-        const rand = (imgData.index * 7) % 13; // Pseudo-random based on index
+        
+        // Pseudo-random seed based on index and a shift
+        const rand = (imgData.index * 13) % 17;
 
         if (imgData.isVertical) {
-          // Make some verticals span 2 rows, others just 1.5x height
-          if (rand % 3 === 0) {
+          // Vertical images mostly square (cropped), occasionally span 2 rows
+          // Reduced frequency: only if rand % 5 == 0 (20% chance)
+          // previously was rand % 3 == 0 (33% chance)
+          if (rand % 5 === 0) {
             item.classList.add("photo-vertical");
           } else {
             item.classList.add("photo-vertical-small");
           }
         } else if (imgData.isWide) {
-          // Apply wide layout
-          item.classList.add("photo-wide");
-        } else {
-          // For square/normal images, occasionally make them larger
-          if (rand % 6 === 0) {
+          // Wide images mostly square (cropped), occasionally span 2 columns
+          // Added randomness: only if rand % 5 == 0 (20% chance)
+          // previously was always applied
+          if (rand % 5 === 0) {
+            item.classList.add("photo-wide");
+          }
+        } else if (imgData.aspectRatio > 0.9 && imgData.aspectRatio < 1.1) {
+          // Square-ish images occasionally become large (2x2)
+          // Reduced frequency: rand % 8 == 0 (12.5% chance)
+          if (rand % 8 === 0) {
             item.classList.add("photo-large");
           }
         }
