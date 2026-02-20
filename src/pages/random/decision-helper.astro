@@ -1,0 +1,497 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/components/Main.astro";
+---
+
+<Layout title="Snap Judgment">
+  <Main>
+    <div class="decision-helper-container w-full max-w-4xl mx-auto p-4">
+      <div id="setup-view" class="view flex flex-col items-center gap-6 py-12">
+        <h1 class="text-2xl font-medium text-center tracking-tight">
+          Snap Judgment
+        </h1>
+        <p class="text-center text-base opacity-50 max-w-sm">
+          A little game to help you make decisions based on your gut. Swiss
+          seeding with 4 entrant playoffs.
+        </p>
+
+        <div class="w-full max-w-md">
+          <label
+            for="photo-upload"
+            class="flex flex-col items-center justify-center w-full h-40 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition-all"
+          >
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg
+                class="w-6 h-6 mb-3 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 4v16m8-8H4"></path>
+              </svg>
+              <p class="text-xs text-gray-400 font-medium">Drop images here</p>
+            </div>
+            <input
+              id="photo-upload"
+              type="file"
+              class="hidden"
+              multiple
+              accept="image/*"
+            />
+          </label>
+        </div>
+
+        <div
+          id="preview-grid"
+          class="grid grid-cols-4 sm:grid-cols-6 gap-3 w-full mt-4"
+        >
+          <!-- Previews will be injected here -->
+        </div>
+
+        <button
+          id="start-btn"
+          class="hidden px-8 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-30"
+          disabled
+        >
+          Help me decide
+        </button>
+      </div>
+
+      <div
+        id="tournament-view"
+        class="view hidden flex flex-col items-center gap-10 py-12"
+      >
+        <div
+          class="w-full flex justify-between items-end border-b border-gray-100 pb-4"
+        >
+          <div class="flex flex-col">
+            <span class="text-xs uppercase tracking-widest opacity-40 font-bold"
+              >Currently playing</span
+            >
+            <h2 id="round-info" class="text-sm font-medium">Quick Picks</h2>
+          </div>
+          <div id="match-progress" class="text-xs font-mono opacity-40">
+            01 / 04
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row gap-8 w-full items-center justify-center"
+        >
+          <div
+            class="photo-card flex flex-col items-center gap-4 w-full md:w-1/2"
+          >
+            <div
+              id="photo-a-container"
+              class="relative group cursor-pointer w-full aspect-square overflow-hidden rounded-lg border border-gray-100 hover:border-gray-400 transition-all"
+            >
+              <img
+                id="photo-a"
+                class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500"
+                src=""
+                alt="Option A"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-[0.03] transition-all"
+              >
+              </div>
+            </div>
+            <span class="text-xs uppercase tracking-widest opacity-40 font-bold"
+              >Option A</span
+            >
+          </div>
+
+          <div class="hidden md:flex items-center justify-center px-4">
+            <span class="text-xs font-mono opacity-20">OR</span>
+          </div>
+
+          <div
+            class="photo-card flex flex-col items-center gap-4 w-full md:w-1/2"
+          >
+            <div
+              id="photo-b-container"
+              class="relative group cursor-pointer w-full aspect-square overflow-hidden rounded-lg border border-gray-100 hover:border-gray-400 transition-all"
+            >
+              <img
+                id="photo-b"
+                class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500"
+                src=""
+                alt="Option B"
+              />
+              <div
+                class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-[0.03] transition-all"
+              >
+              </div>
+            </div>
+            <span class="text-xs uppercase tracking-widest opacity-40 font-bold"
+              >Option B</span
+            >
+          </div>
+        </div>
+
+        <p class="text-xs text-gray-400 text-center font-medium">
+          Pick your favorite.
+        </p>
+      </div>
+
+      <div
+        id="winner-view"
+        class="view hidden flex flex-col items-center gap-8 py-8"
+      >
+        <div class="text-center">
+          <span class="text-xs uppercase tracking-widest opacity-40 font-bold"
+            >The Verdict</span
+          >
+          <h2 class="text-base font-medium mt-1">Found a winner.</h2>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row items-start gap-12 w-full justify-center"
+        >
+          <div class="flex flex-col items-center gap-6">
+            <div
+              class="w-64 sm:w-80 aspect-square rounded-xl overflow-hidden border border-gray-100 shadow-sm"
+            >
+              <img
+                id="winner-photo"
+                class="w-full h-full object-cover"
+                src=""
+                alt="Selection"
+              />
+            </div>
+            <button
+              id="restart-btn"
+              class="w-full px-8 py-2.5 border border-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 transition-all"
+            >
+              Try again
+            </button>
+          </div>
+
+          <div id="leaderboard-container" class="w-full max-w-md">
+            <!-- Leaderboard will be injected here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </Main>
+</Layout>
+
+<script>
+  import {
+    TournamentEngine,
+    type Photo,
+    type Match,
+  } from "@/scripts/tournament";
+
+  let photos: Photo[] = [];
+  let engine: TournamentEngine | null = null;
+  let currentRoundMatches: Match[] = [];
+  let currentMatchIndex = 0;
+  let playoffMatches: Match[] = [];
+  let playoffWinners: Photo[] = [];
+
+  const setupView = document.getElementById("setup-view")!;
+  const tournamentView = document.getElementById("tournament-view")!;
+  const winnerView = document.getElementById("winner-view")!;
+
+  const photoUpload = document.getElementById(
+    "photo-upload",
+  ) as HTMLInputElement;
+  const previewGrid = document.getElementById("preview-grid")!;
+  const startBtn = document.getElementById("start-btn") as HTMLButtonElement;
+  const restartBtn = document.getElementById("restart-btn")!;
+
+  const photoA = document.getElementById("photo-a") as HTMLImageElement;
+  const photoB = document.getElementById("photo-b") as HTMLImageElement;
+  const photoAContainer = document.getElementById("photo-a-container")!;
+  const photoBContainer = document.getElementById("photo-b-container")!;
+
+  const roundInfo = document.getElementById("round-info")!;
+  const matchProgress = document.getElementById("match-progress")!;
+  const winnerPhoto = document.getElementById(
+    "winner-photo",
+  ) as HTMLImageElement;
+
+  function cleanupPhotos() {
+    photos.forEach((p) => URL.revokeObjectURL(p.url));
+    photos = [];
+    previewGrid.innerHTML = "";
+  }
+
+  photoUpload.addEventListener("change", (e) => {
+    const files = Array.from((e.target as HTMLInputElement).files || []);
+    handleFiles(files);
+  });
+
+  const dropzone = document.querySelector('label[for="photo-upload"]')!;
+  ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+    dropzone.addEventListener(
+      eventName,
+      (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      false,
+    );
+  });
+
+  function handleFiles(files: File[]) {
+    files.forEach((file) => {
+      if (!file.type.startsWith("image/")) return;
+      const url = URL.createObjectURL(file);
+      const id = Math.random().toString(36).substring(2, 11);
+      photos.push({ id, url, name: file.name });
+    });
+    updatePreview();
+    updateStartButton();
+  }
+
+  function updatePreview() {
+    previewGrid.innerHTML = "";
+    photos.forEach((photo, index) => {
+      const div = document.createElement("div");
+      div.className =
+        "relative aspect-square rounded-lg overflow-hidden group border border-gray-100";
+
+      const img = document.createElement("img");
+      img.src = photo.url;
+      img.className = "w-full h-full object-cover";
+
+      const btn = document.createElement("button");
+      btn.className =
+        "absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs";
+      btn.textContent = "×";
+      btn.onclick = () => {
+        URL.revokeObjectURL(photos[index].url);
+        photos.splice(index, 1);
+        updatePreview();
+        updateStartButton();
+      };
+
+      div.append(img, btn);
+      previewGrid.appendChild(div);
+    });
+  }
+
+  function updateStartButton() {
+    if (photos.length >= 2) {
+      const swissRounds = Math.ceil(Math.log2(photos.length));
+      const playoffMatchesCount =
+        photos.length >= 4 ? 3 : photos.length >= 2 ? 1 : 0;
+      const estimate =
+        Math.ceil((photos.length / 2) * swissRounds) + playoffMatchesCount;
+      startBtn.classList.remove("hidden");
+      startBtn.disabled = false;
+      startBtn.textContent = `Help me decide (~${estimate} picks)`;
+    } else {
+      startBtn.classList.add("hidden");
+    }
+  }
+
+  startBtn.addEventListener("click", () => {
+    engine = new TournamentEngine(photos);
+    currentRoundMatches = engine.generateSwissRound();
+    currentMatchIndex = 0;
+    engine.currentSwissRound = 1;
+    showView("tournament-view");
+    setupMatch();
+  });
+
+  function setupMatch() {
+    if (!engine) return;
+
+    if (engine.isPlayoffMode) {
+      if (playoffMatches.length === 0) {
+        if (playoffWinners.length === 1) {
+          showWinner(playoffWinners[0]);
+        } else {
+          const nextMatches: Match[] = [];
+          for (let i = 0; i < playoffWinners.length; i += 2) {
+            if (i + 1 < playoffWinners.length) {
+              nextMatches.push({
+                pA: playoffWinners[i],
+                pB: playoffWinners[i + 1],
+              });
+            } else {
+              // Should not happen in 4-entrant bracket but for robustness:
+              playoffWinners = [playoffWinners[i]];
+            }
+          }
+          playoffMatches = nextMatches;
+          playoffWinners = [];
+          setupMatch();
+        }
+        return;
+      }
+
+      const match = playoffMatches[0];
+      photoA.src = match.pA.url;
+      photoB.src = match.pB.url;
+
+      const isFinal =
+        playoffMatches.length === 1 && playoffWinners.length === 0;
+      roundInfo.textContent = isFinal ? "GRAND FINAL" : "Playoff Semifinal";
+      matchProgress.textContent = isFinal
+        ? "Final Choice"
+        : `Match 1 of ${playoffMatches.length + playoffWinners.length + 1}`;
+      return;
+    }
+
+    if (currentMatchIndex >= currentRoundMatches.length) {
+      if (engine.currentSwissRound >= engine.swissRoundsTotal) {
+        startPlayoffs();
+      } else {
+        engine.currentSwissRound++;
+        currentRoundMatches = engine.generateSwissRound();
+        currentMatchIndex = 0;
+        setupMatch();
+      }
+      return;
+    }
+
+    const match = currentRoundMatches[currentMatchIndex];
+    photoA.src = match.pA.url;
+    photoB.src = match.pB.url;
+    roundInfo.textContent = `Round ${engine.currentSwissRound} of ${engine.swissRoundsTotal}`;
+    matchProgress.textContent = `Pick ${currentMatchIndex + 1} of ${currentRoundMatches.length}`;
+  }
+
+  function startPlayoffs() {
+    if (!engine) return;
+    engine.isPlayoffMode = true;
+    const top4 = engine.getTopPhotos(4);
+
+    if (top4.length < 2) {
+      showWinner(top4[0]);
+      return;
+    }
+
+    if (top4.length === 4) {
+      playoffMatches = [
+        { pA: top4[0], pB: top4[3] },
+        { pA: top4[1], pB: top4[2] },
+      ];
+    } else {
+      playoffMatches = [{ pA: top4[0], pB: top4[1] }];
+    }
+    playoffWinners = [];
+    setupMatch();
+  }
+
+  function selectWinner(winnerIdx: number) {
+    if (!engine) return;
+
+    if (engine.isPlayoffMode) {
+      const match = playoffMatches.shift()!;
+      playoffWinners.push(winnerIdx === 0 ? match.pA : match.pB);
+    } else {
+      const match = currentRoundMatches[currentMatchIndex];
+      const winner = winnerIdx === 0 ? match.pA : match.pB;
+      const loser = winnerIdx === 0 ? match.pB : match.pA;
+      engine.recordResult(winner, loser);
+      currentMatchIndex++;
+    }
+
+    tournamentView.classList.add("opacity-0");
+    setTimeout(() => {
+      setupMatch();
+      tournamentView.classList.remove("opacity-0");
+    }, 150);
+  }
+
+  photoAContainer.addEventListener("click", () => selectWinner(0));
+  photoBContainer.addEventListener("click", () => selectWinner(1));
+
+  function showWinner(winner: Photo) {
+    if (!engine) return;
+    winnerPhoto.src = winner.url;
+
+    const ranked = engine.getRankedPhotos();
+    const container = document.getElementById("leaderboard-container")!;
+    container.innerHTML = "";
+
+    const h3 = document.createElement("h3");
+    h3.className =
+      "text-xs uppercase tracking-widest opacity-40 font-bold mb-4";
+    h3.textContent = "Full Rankings";
+    container.appendChild(h3);
+
+    const list = document.createElement("div");
+    list.className = "flex flex-col gap-2";
+
+    ranked.forEach((p, i) => {
+      const score = engine!.scores[p.id];
+      const row = document.createElement("div");
+      row.className = `flex items-center gap-4 p-2.5 rounded-lg border ${p.id === winner.id ? "border-gray-200 bg-gray-50" : "border-transparent"}`;
+
+      const rank = document.createElement("span");
+      rank.className = "text-xs font-mono opacity-30 w-4";
+      rank.textContent = (i + 1).toString().padStart(2, "0");
+
+      const img = document.createElement("img");
+      img.src = p.url;
+      img.className = "w-10 h-10 object-cover rounded shadow-sm";
+
+      const info = document.createElement("div");
+      info.className = "flex-grow";
+      info.innerHTML = `
+        <div class="text-xs font-medium truncate opacity-80">${escapeHtml(p.name)}</div>
+        <div class="text-[10px] uppercase tracking-tighter opacity-30">${score.wins} wins / ${score.losses} losses</div>
+      `;
+
+      row.append(rank, img, info);
+      list.appendChild(row);
+    });
+
+    container.appendChild(list);
+    showView("winner-view");
+  }
+
+  function escapeHtml(unsafe: string) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function showView(viewId: string) {
+    [setupView, tournamentView, winnerView].forEach((v) => {
+      v.classList.add("hidden");
+      v.classList.remove("opacity-100");
+    });
+    const activeView = document.getElementById(viewId)!;
+    activeView.classList.remove("hidden");
+    setTimeout(() => activeView.classList.add("opacity-100"), 10);
+  }
+
+  restartBtn.addEventListener("click", () => {
+    cleanupPhotos();
+    updateStartButton();
+    showView("setup-view");
+  });
+</script>
+
+<style>
+  .decision-helper-container {
+    font-family: georgia, "times new roman", serif;
+  }
+
+  .view {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  #tournament-view {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .photo-card {
+    max-width: 400px;
+  }
+</style>
