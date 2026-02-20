@@ -42,7 +42,9 @@ const anim = () => {
     }
   });
 
-  path.setAttribute("d", `M ${points.map((p) => `${p.x} ${p.y}`).join(` L `)}`);
+  if (points.length > 0) {
+    path.setAttribute("d", `M ${points.map((p) => `${p.x} ${p.y}`).join(` L `)}`);
+  }
 
   requestAnimationFrame(anim);
 };
