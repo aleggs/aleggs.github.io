@@ -1,29 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Main from "../components/Main.astro";
-import fs from "fs";
-import path from "path";
+import { Image } from "astro:assets";
 
 // Get all image files from the adventure-pics directory
-let images: string[] = [];
-try {
-  const adventurePicsPath = path.join(
-    process.cwd(),
-    "public",
-    "adventure-pics"
-  );
-  if (fs.existsSync(adventurePicsPath)) {
-    const files = fs.readdirSync(adventurePicsPath);
-    images = files.filter((file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file));
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/adventure-pics/*.{jpeg,jpg,png,gif,webp}",
+);
 
-    // Fisher-Yates Shuffle
-    for (let i = images.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [images[i], images[j]] = [images[j], images[i]];
-    }
-  }
-} catch (error) {
-  console.log("Could not read adventure-pics directory:", error);
+// Resolve all images
+const images = await Promise.all(
+  Object.values(imageFiles).map(async (resolver) => {
+    const file = await resolver();
+    return file.default;
+  }),
+);
+
+// Fisher-Yates Shuffle
+for (let i = images.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [images[i], images[j]] = [images[j], images[i]];
 }
 ---
 
@@ -40,22 +36,24 @@ try {
             <div class="empty-gallery">
               <p>
                 No photos yet! Add some adventure photos to the{" "}
-                <code>/public/adventure-pics/</code> folder.
+                <code>/src/assets/adventure-pics/</code> folder.
               </p>
             </div>
           ) : (
-            images.map((filename, index) => {
-              const imagePath = `/adventure-pics/${filename}`;
+            images.map((image, index) => {
               return (
                 <div
                   class={`photo-item photo-${(index % 10) + 1}`}
                   data-lightbox="gallery"
-                  data-src={imagePath}
+                  data-src={image.src}
                 >
-                  <img
-                    src={imagePath}
+                  <Image
+                    src={image}
+                    width={800}
+                    quality={90}
+                    format="webp"
                     alt={`Adventure photo ${index + 1}`}
-                    loading="lazy"
+                    loading={index < 4 ? "eager" : "lazy"}
                   />
                 </div>
               );
@@ -261,12 +259,19 @@ try {
       transform: none !important;
     }
 
-    .photo-1, .photo-3, .photo-5, .photo-8, .photo-10 {
+    .photo-1,
+    .photo-3,
+    .photo-5,
+    .photo-8,
+    .photo-10 {
       grid-column: span 2 !important;
       transform: none !important;
     }
 
-    .photo-2, .photo-4, .photo-6, .photo-9 {
+    .photo-2,
+    .photo-4,
+    .photo-6,
+    .photo-9 {
       grid-column: span 1 !important;
       transform: none !important;
     }
@@ -388,7 +393,7 @@ try {
     function applySmartLayout() {
       imageData.forEach((imgData, i) => {
         const item = imgData.item;
-        
+
         // Pseudo-random seed based on index and a shift
         const rand = (imgData.index * 13) % 17;
 

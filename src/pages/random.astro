@@ -1,6 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Main from "@/components/Main.astro";
+import { Image } from "astro:assets";
+import decisionHelperImg from "@/assets/random/decision-helper.png";
+import placeholderImg from "@/assets/random/placeholder.png";
 
 const apps = [
   {
@@ -8,7 +11,7 @@ const apps = [
     description:
       "A game to help when you have decision paralysis. Upload photos, choose winners.",
     url: "/random/decision-helper",
-    image: "/random/decision-helper.png",
+    image: decisionHelperImg,
   },
   {
     title: "Project L",
@@ -44,9 +47,11 @@ const apps = [
             >
               {/* Media area with fixed aspect ratio */}
               <div class="aspect-[16/9] bg-gray-50 flex items-center justify-center border-b border-gray-50 group-hover:bg-gray-100/50 transition-colors">
-                <img
-                  src={app.image || "/random/placeholder.png"}
+                <Image
+                  src={app.image || placeholderImg}
                   alt={app.title}
+                  width={600}
+                  format="webp"
                   class="w-full h-full object-cover"
                 />
               </div>
